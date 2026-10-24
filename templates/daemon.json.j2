@@ -1,0 +1,11 @@
+{% set cfg = {
+  'log-driver': 'json-file',
+  'log-opts': {
+    'max-size': docker_engine_log_max_size,
+    'max-file': docker_engine_log_max_file | string
+  }
+} %}
+{% if docker_engine_metrics_addr | length > 0 %}{% set _ = cfg.update({'metrics-addr': docker_engine_metrics_addr}) %}{% endif %}
+{% if docker_engine_data_root | length > 0 %}{% set _ = cfg.update({'data-root': docker_engine_data_root}) %}{% endif %}
+{% if docker_engine_no_new_privileges | bool %}{% set _ = cfg.update({'no-new-privileges': true}) %}{% endif %}
+{{ cfg | to_nice_json }}

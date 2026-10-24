@@ -1,0 +1,8 @@
+# SPDX-License-Identifier: MIT
+---
+# handlers file for docker
+- name: Redémarrer le service Docker
+  ansible.builtin.systemd_service:
+    name: docker
+    state: restarted
+  become: true
