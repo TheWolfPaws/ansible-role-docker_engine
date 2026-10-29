@@ -2,12 +2,17 @@
 ---
 # defaults file for docker
 docker_engine_user: ""
-# Rotation des journaux des conteneurs (pilote json-file).
-docker_engine_log_max_size: "10m"
-docker_engine_log_max_file: "3"
-# Point de métriques du démon pour Prometheus (ex. 127.0.0.1:9323). Vide : clé absente.
+
+docker_engine_log_max_size: "20m"
+docker_engine_log_max_file: "5"
+docker_engine_log_compress: "true"
+
+docker_engine_address_pools:
+  - base: "172.20.0.0/16"
+    size: 24
+
 docker_engine_metrics_addr: ""
-# Emplacement des données Docker. Vide : /var/lib/docker.
+
 docker_engine_data_root: ""
-# Interdit aux conteneurs de gagner des privilèges (setuid). À tester avant de l'activer.
+
 docker_engine_no_new_privileges: false
